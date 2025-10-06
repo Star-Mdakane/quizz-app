@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    --white: #fff;
+    --black: #000;
+    --gy50: rgb(244, 246, 250);
+    --gy500: rgb(98, 108, 127);
+    --blue50: rgb(235, 240, 255);
+    --blue100: rgb(237, 241, 249);
+    --blue300: rgb(171, 193, 225);
+    --blue500: rgb(48, 106, 255);
+    --blue850: rgb(59, 77, 102);
+    --blue900: rgb(49, 62, 81);
+    --blue950: rgb(45, 57, 73);
+    --gn100: rgb(224, 253, 239);
+    --gn500: rgb(47, 216, 135);
+    --purp100: rgb(246, 231, 255);
+    --purp600: rgb(167, 41, 245);
+    --orange50: rgb(255, 245, 237);
+    --orange400: rgb(255, 126, 53);
+    --red500: rgb(238, 84, 84);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Rubik", sans-serif;
+}
+
+.m-text-1 {
+    font-size: 88px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    font-weight: medium;
+}
+
+.m-text-2 {
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    font-weight: medium;
+}
+
+.m-text-3 {
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: 0px;
+    font-weight: medium;
+}
+
+.m-text-4 {
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    font-weight: medium;
+}
+
+.m-text-5 {
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    font-weight: medium;
+    font-style: italic;
+}
+
+.d-text-1 {
+    font-size: 144px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    font-weight: medium;
+}
+
+.d-text-2 {
+    font-size: 64px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    font-weight: medium;
+}
+
+.d-text-2-l {
+    font-size: 64px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    font-weight: light;
+}
+
+.d-text-3 {
+    font-size: 36px;
+    line-height: 120%;
+    letter-spacing: 0px;
+    font-weight: medium;
+}
+
+.d-text-4 {
+    font-size: 28px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    font-weight: medium;
+}
+
+.d-text-5 {
+    font-size: 24px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    font-weight: medium;
+}
+
+.d-text-5-l {
+    font-size: 24px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    font-weight: 400;
+}
+
+.d-text-6 {
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    font-weight: medium;
+    font-style: italic;
+}

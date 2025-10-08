@@ -57,6 +57,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 1. This prject I will start by doing mobile first.
 2. I inserted my css basic styling.
 3. I did the html skeleton but after I was done doing 3 different UI containers, I'm thinking of combining them into one.
+4. I have a complete html structure. What has to be done is css wherre I have to style, hide and position the page elements then the rest will be left to be controlled via js.
 
 ### Built with
 

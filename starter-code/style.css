@@ -120,3 +120,110 @@
     font-weight: medium;
     font-style: italic;
 }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    max-width: 90rem;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--gy50);
+    color: var(--blue900);
+    background-image: url(./assets/images/pattern-background-mobile-light.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: all 500ms;
+
+}
+
+
+
+:where(.contaier-menu, .container-questions, .complete-container) {
+    display: none;
+}
+
+.subject {
+    width: 100%;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.subject-list {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.img {
+    display: grid;
+    place-content: center;
+    background-color: var(--purp100);
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+}
+
+.toggle-container {
+    appearance: none;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toggle {
+    position: relative;
+    width: 32px;
+    height: 20px;
+    background-color: var(--purp600);
+    border-radius: 999px;
+    padding: 4px;
+}
+
+.toggle span {
+    position: absolute;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--white);
+    border-radius: 50%;
+    transition: all 500ms;
+}
+
+.toggle.dark span {
+    transform: translateX(12px);
+}
+
+.wrapper {
+    width: 100%;
+    padding: 32px 24px 0px;
+}
+
+.contaier-menu {
+    display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+    .darkmode {
+        background-color: var(--blue900);
+        color: var(--white);
+        background-image: url(./assets/images/pattern-background-mobile-dark.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+    }
+}

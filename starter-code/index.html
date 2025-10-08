@@ -14,57 +14,57 @@
 
 <body>
   <main>
-    <section class="container menu">
-      <div class="subject">
-        <div class="subject-list">
-          <img src="./assets/images/icon-accessibility.svg" width="40" height="40" alt="subject icon">
-          <h4>Accessibility</h4>
-        </div>
-        <div class="theme-container">
-          <img src="./assets/images/icon-sun-light.svg" width="40" height="40" alt="subject icon">
-          <div class="toggle">
-            <span></span>
-            <span></span>
-          </div>
-          <img src="./assets/images/icon-moon-light.svg" width="40" height="40" alt="subject icon">
+    <div class="subject">
+      <div class="subject-list">
+        <div class="img">
+          <img src="./assets/images/icon-accessibility.svg" width="28.57" height="28.57" alt="subject icon">
 
         </div>
+        <h4 class="m-text-4">Accessibility</h4>
       </div>
-      <div class="wrapper">
-        <div class="contaier-menu">
-          <div class="header-container">
-            <div class="title">
-              <h2>
-                Welcome to the
-              </h2>
-              <h2>
-                Frontend Quiz
-              </h2>
-            </div>
-            <h5>
-              Pick a subject to get started.
-            </h5>
-          </div>
-          <ul class="subjects-container" id="subjects">
-            <li class="subject">
-              <img src="./assets/images/icon-html.svg" width="40" height="40" alt="subject icon">
-              html
-            </li>
-            <li class="subject">
-              <img src="./assets/images/icon-css.svg" width="40" height="40" alt="subject icon">
-              css
-            </li>
-            <li class="subject">
-              <img src="./assets/images/icon-js.svg" width="40" height="40" alt="subject icon">
-              javascript
-            </li>
-            <li class="subject">
-              <img src="./assets/images/icon-accessibility.svg" width="40" height="40" alt="subject icon">
-              accessibility
-            </li>
-          </ul>
+      <button id="theme" class="toggle-container">
+        <img id="sun" src="./assets/images/icon-sun-dark.svg" width="16" height="16" alt="subject icon">
+        <div class="toggle">
+          <span></span>
         </div>
-        <div class="container-questions">
+        <img id="moon" src="./assets/images/icon-moon-dark.svg" width="16" height="16" alt="subject icon">
+      </button>
+    </div>
+    <div class="wrapper">
+      <div class="contaier-menu">
+        <div class="header-container">
+          <div class="title">
+            <h2>
+              Welcome to the
+            </h2>
+            <h2>
+              Frontend Quiz
+            </h2>
+          </div>
+          <h5>
+            Pick a subject to get started.
+          </h5>
+        </div>
+        <div class="subjects-container" id="subjects">
+          <button class="subject">
+            <img src="./assets/images/icon-html.svg" width="40" height="40" alt="subject icon">
+            html
+          </button>
+          <button class="subject">
+            <img src="./assets/images/icon-css.svg" width="40" height="40" alt="subject icon">
+            css
+          </button>
+          <button class="subject">
+            <img src="./assets/images/icon-js.svg" width="40" height="40" alt="subject icon">
+            javascript
+          </button>
+          <button class="subject">
+            <img src="./assets/images/icon-accessibility.svg" width="40" height="40" alt="subject icon">
+            accessibility
+          </button>
+        </div>
+      </div>
+      <!-- <div class="container-questions">
           <div class="question-container">
             <div class="question">
               <h5>
@@ -124,15 +124,13 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="btn">
-        <button id="submit">Submit Answer</button>
-        <span aria aria-label="polite" role="alert"><img src="./assets/images/icon-error.svg" width="24" height="24"
-            alt="error"> Please elect
-          an answer</span>
-      </div>
-    </section>
-
+                <div class="btn">
+          <button id="submit">Submit Answer</button>
+          <span aria aria-label="polite" role="alert"><img src="./assets/images/icon-error.svg" width="24" height="24"
+              alt="error"> Please elect
+            an answer</span>
+        </div> -->
+    </div>
   </main>
 </body>
 

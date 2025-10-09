@@ -14,11 +14,10 @@
 
 <body>
   <main>
-    <div class="subject">
+    <div class="selected-subject">
       <div class="subject-list">
         <div class="img">
           <img src="./assets/images/icon-accessibility.svg" width="28.57" height="28.57" alt="subject icon">
-
         </div>
         <h4 class="m-text-4">Accessibility</h4>
       </div>
@@ -34,102 +33,113 @@
       <div class="contaier-menu">
         <div class="header-container">
           <div class="title">
-            <h2>
+            <h2 class="m-text-2-l">
               Welcome to the
             </h2>
-            <h2>
-              Frontend Quiz
+            <h2 class="m-text-2">
+              Frontend Quiz!
             </h2>
           </div>
-          <h5>
+          <h5 class="m-text-5">
             Pick a subject to get started.
           </h5>
         </div>
         <div class="subjects-container" id="subjects">
-          <button class="subject">
-            <img src="./assets/images/icon-html.svg" width="40" height="40" alt="subject icon">
-            html
+          <button class="subject btn">
+            <div class="img">
+              <img src="./assets/images/icon-html.svg" width="28.57" height="28.57" alt="subject icon">
+            </div>
+            <h4 class="m-text-4">HTML</h4>
           </button>
-          <button class="subject">
-            <img src="./assets/images/icon-css.svg" width="40" height="40" alt="subject icon">
-            css
+          <button class="subject btn">
+            <div class="img">
+              <img src="./assets/images/icon-css.svg" width="28.57" height="28.57" alt="subject icon">
+            </div>
+            <h4 class="m-text-4">CSS</h4>
           </button>
-          <button class="subject">
-            <img src="./assets/images/icon-js.svg" width="40" height="40" alt="subject icon">
-            javascript
+          <button class="subject btn">
+            <div class="img">
+              <img src="./assets/images/icon-js.svg" width="28.57" height="28.57" alt="subject icon">
+            </div>
+            <h4 class="m-text-4">Javascript</h4>
           </button>
-          <button class="subject">
-            <img src="./assets/images/icon-accessibility.svg" width="40" height="40" alt="subject icon">
-            accessibility
+          <button class="subject btn">
+            <div class="img">
+              <img src="./assets/images/icon-accessibility.svg" width="28.57" height="28.57" alt="subject icon">
+            </div>
+            <h4 class="m-text-4">Accessibility</h4>
           </button>
         </div>
       </div>
-      <!-- <div class="container-questions">
-          <div class="question-container">
-            <div class="question">
-              <h5>
-                Question 6 of 10
-              </h5>
-              <h3 id="question">
-                Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?
-              </h3>
-            </div>
-            <div class="progress">
-              <input type="range" name="progression" class="progression" id="progression">
-            </div>
+      <div class="container-questions">
+        <div class="question-container">
+          <div class="question">
+            <h5>
+              Question 6 of 10
+            </h5>
+            <h3 id="question">
+              Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?
+            </h3>
+          </div>
+          <div class="progress">
+            <input type="range" name="progression" class="progression" id="progression">
+          </div>
 
-          </div>
-          <div class="solutions">
-            <ul id="solutions">
-              <li class="solution">
-                <span>A</span>
-                <h4>4.5:1</h4>
-                <img src="./assets/images/icon-correct.svg" width="32" height="32" alt="correct">
-              </li>
-              <li class="solution">
-                <span>B</span>
-                <h4>3:1</h4>
-                <img src="./assets/images/icon-incorrect.svg" width="32" height="32" alt="incorrect">
-              </li>
-              <li class="solution">
-                <span>C</span>
-                <h4>2.5:1</h4>
-                <img src="./assets/images/icon-correct.svg" width="32" height="32" alt="correct">
-              </li>
-              <li class="solution">
-                <span>D</span>
-                <h4>5:1</h4>
-                <img src="./assets/images/icon-incorrect.svg" width="32" height="32" alt="incorrect">
-              </li>
-            </ul>
+        </div>
+        <div class="solutions">
+          <ul id="solutions">
+            <li class="solution btn">
+              <span>A</span>
+              <h4>4.5:1</h4>
+              <img src="./assets/images/icon-correct.svg" width="32" height="32" alt="correct">
+            </li>
+            <li class="solution btn">
+              <span>B</span>
+              <h4>3:1</h4>
+              <img src="./assets/images/icon-incorrect.svg" width="32" height="32" alt="incorrect">
+            </li>
+            <li class="solution btn">
+              <span>C</span>
+              <h4>2.5:1</h4>
+              <img src="./assets/images/icon-correct.svg" width="32" height="32" alt="correct">
+            </li>
+            <li class="solution btn">
+              <span>D</span>
+              <h4>5:1</h4>
+              <img src="./assets/images/icon-incorrect.svg" width="32" height="32" alt="incorrect">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="complete-container">
+        <div class="outro">
+          <div class="output">
+            <h2>Quiz completed</h2>
+            <h2>You scored...</h2>
           </div>
         </div>
-        <div class="complete-container">
-          <div class="outro">
-            <div class="output">
-              <h2>Quiz completed</h2>
-              <h2>You scored...</h2>
+        <div class="score">
+          <div class="subject-item">
+            <div class="subject-list">
+              <img src="./assets/images/icon-accessibility.svg" width="40" height="40" alt="subject icon">
+              <h4>Accessibility</h4>
             </div>
-          </div>
-          <div class="score">
-            <div class="subject-item">
-              <div class="subject-list">
-                <img src="./assets/images/icon-accessibility.svg" width="40" height="40" alt="subject icon">
-                <h4>Accessibility</h4>
-              </div>
-              <div class="score-container">
-                <h1>8</h1>
-                <h4>out of 10</h4>
-              </div>
+            <div class="score-container">
+              <h1>8</h1>
+              <h4>out of 10</h4>
             </div>
           </div>
         </div>
-                <div class="btn">
-          <button id="submit">Submit Answer</button>
-          <span aria aria-label="polite" role="alert"><img src="./assets/images/icon-error.svg" width="24" height="24"
-              alt="error"> Please elect
-            an answer</span>
-        </div> -->
+      </div>
+      <div class="button">
+        <button class="submit btn" id="submit">
+          <h4 class="m-text-4">Submit Answer</h4>
+        </button>
+        <div class="error-msg">
+          <img src="./assets/images/icon-error.svg" width="24" height="24" alt="error">
+          <span aria aria-label="polite" role="alert">Please select an answer</span>
+        </div>
+      </div>
     </div>
   </main>
 </body>

@@ -28,39 +28,54 @@
     font-family: "Rubik", sans-serif;
 }
 
+input,
+button {
+    appearance: none;
+    border: none;
+    outline: none;
+    font-family: inherit;
+}
+
 .m-text-1 {
     font-size: 88px;
     line-height: 100%;
     letter-spacing: 0px;
-    font-weight: medium;
+    font-weight: 500;
 }
 
 .m-text-2 {
     font-size: 40px;
     line-height: 100%;
     letter-spacing: 0px;
-    font-weight: medium;
+    font-weight: 500;
+}
+
+.m-text-2-l {
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    font-weight: 300;
 }
 
 .m-text-3 {
     font-size: 20px;
     line-height: 120%;
     letter-spacing: 0px;
-    font-weight: medium;
+    font-weight: 500;
 }
 
 .m-text-4 {
     font-size: 18px;
     line-height: 100%;
     letter-spacing: 0px;
-    font-weight: medium;
+    font-weight: 500;
 }
 
 .m-text-5 {
     font-size: 14px;
     line-height: 150%;
     letter-spacing: 0px;
-    font-weight: medium;
+    font-weight: 500;
     font-style: italic;
 }
 
@@ -68,45 +83,45 @@
     font-size: 144px;
     line-height: 100%;
     letter-spacing: 0px;
-    font-weight: medium;
+    font-weight: 500;
 }
 
 .d-text-2 {
     font-size: 64px;
     line-height: 100%;
     letter-spacing: 0px;
-    font-weight: medium;
+    font-weight: 500;
 }
 
 .d-text-2-l {
     font-size: 64px;
     line-height: 100%;
     letter-spacing: 0px;
-    font-weight: light;
+    font-weight: 300;
 }
 
 .d-text-3 {
     font-size: 36px;
     line-height: 120%;
     letter-spacing: 0px;
-    font-weight: medium;
+    font-weight: 500;
 }
 
 .d-text-4 {
     font-size: 28px;
     line-height: 100%;
     letter-spacing: 0px;
-    font-weight: medium;
+    font-weight: 500;
 }
 
 .d-text-5 {
     font-size: 24px;
     line-height: 150%;
     letter-spacing: 0px;
-    font-weight: medium;
+    font-weight: 500;
 }
 
-.d-text-5-l {
+.d-text-5-r {
     font-size: 24px;
     line-height: 150%;
     letter-spacing: 0px;
@@ -117,7 +132,7 @@
     font-size: 20px;
     line-height: 150%;
     letter-spacing: 0px;
-    font-weight: medium;
+    font-weight: 500;
     font-style: italic;
 }
 
@@ -149,9 +164,10 @@ main {
 
 :where(.contaier-menu, .container-questions, .complete-container) {
     display: none;
+    /* padding: 32px 24px 0px; */
 }
 
-.subject {
+.selected-subject {
     width: 100%;
     padding: 16px 24px;
     display: flex;
@@ -210,10 +226,101 @@ main {
 .wrapper {
     width: 100%;
     padding: 32px 24px 0px;
+
+
 }
 
 .contaier-menu {
     display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+}
+
+.header-container h5 {
+    color: var(--gy500);
+}
+
+.subjects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+}
+
+.subjects-container button {
+    display: flex;
+    gap: 16px;
+    background-color: var(--white);
+    color: var(--blue900);
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.subject .immg {
+    width: 40px;
+    height: 40px;
+}
+
+.subject:nth-of-type(1) .img {
+    background-color: var(--orange50);
+}
+
+.subject:nth-of-type(2) .img {
+    background-color: var(--gn100);
+}
+
+.subject:nth-of-type(3) .img {
+    background-color: var(--blue50);
+}
+
+.subject:nth-of-type(4) .img {
+    background-color: var(--purp100);
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+    margin-top: 16px;
+}
+
+.submit {
+    background-color: var(--purp600);
+    color: var(--white);
+}
+
+.error-msg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.error-msg span {
+    color: var(--red500);
+}
+
+.container-questions {}
+
+.complete-container {}
+
+.btn {
+    display: block;
+    box-shadow: 5px 5px 15px rgb(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    width: 100%;
 }
 
 @media (prefers-color-scheme: dark) {

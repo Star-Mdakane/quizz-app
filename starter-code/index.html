@@ -74,39 +74,39 @@
       <div class="container-questions">
         <div class="question-container">
           <div class="question">
-            <h5>
+            <h5 class="m-text-5">
               Question 6 of 10
             </h5>
-            <h3 id="question">
+            <h3 class="m-text-3" id="question">
               Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?
             </h3>
           </div>
           <div class="progress">
-            <input type="range" name="progression" class="progression" id="progression">
+            <input type="range" name="progression" class="progression" id="progression" min="0" max="10" step="1">
           </div>
 
         </div>
         <div class="solutions">
           <ul id="solutions">
             <li class="solution btn">
-              <span>A</span>
-              <h4>4.5:1</h4>
-              <img src="./assets/images/icon-correct.svg" width="32" height="32" alt="correct">
+              <span class="m-text-4">A</span>
+              <h4 class="m-text-4">4.5:1</h4>
+              <!-- <img src="./assets/images/icon-correct.svg" width="32" height="32" alt="correct"> -->
             </li>
             <li class="solution btn">
-              <span>B</span>
+              <span class="m-text-4">B</span>
               <h4>3:1</h4>
-              <img src="./assets/images/icon-incorrect.svg" width="32" height="32" alt="incorrect">
+              <!-- <img src="./assets/images/icon-incorrect.svg" width="32" height="32" alt="incorrect"> -->
             </li>
             <li class="solution btn">
-              <span>C</span>
+              <span class="m-text-4">C</span>
               <h4>2.5:1</h4>
-              <img src="./assets/images/icon-correct.svg" width="32" height="32" alt="correct">
+              <!-- <img src="./assets/images/icon-correct.svg" width="32" height="32" alt="correct"> -->
             </li>
             <li class="solution btn">
-              <span>D</span>
+              <span class="m-text-4">D</span>
               <h4>5:1</h4>
-              <img src="./assets/images/icon-incorrect.svg" width="32" height="32" alt="incorrect">
+              <!-- <img src="./assets/images/icon-incorrect.svg" width="32" height="32" alt="incorrect"> -->
             </li>
           </ul>
         </div>
@@ -114,30 +114,32 @@
       <div class="complete-container">
         <div class="outro">
           <div class="output">
-            <h2>Quiz completed</h2>
-            <h2>You scored...</h2>
+            <h2 class="m-text-2-l">Quiz completed</h2>
+            <h2 class="m-text-2">You scored...</h2>
           </div>
         </div>
         <div class="score">
           <div class="subject-item">
             <div class="subject-list">
-              <img src="./assets/images/icon-accessibility.svg" width="40" height="40" alt="subject icon">
-              <h4>Accessibility</h4>
+              <div class="img">
+                <img src="./assets/images/icon-accessibility.svg" width="28.57" height="28.57" alt="subject icon">
+              </div>
+              <h4 class="m-text-4">Accessibility</h4>
             </div>
             <div class="score-container">
-              <h1>8</h1>
-              <h4>out of 10</h4>
+              <h1 class="m-text-1">8</h1>
+              <h4 class="m-text-4">out of 10</h4>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="button">
-        <button class="submit btn" id="submit">
-          <h4 class="m-text-4">Submit Answer</h4>
-        </button>
-        <div class="error-msg">
-          <img src="./assets/images/icon-error.svg" width="24" height="24" alt="error">
-          <span aria aria-label="polite" role="alert">Please select an answer</span>
+          <div class="button">
+            <button class="submit btn" id="submit">
+              <h4 class="m-text-4">Submit Answer</h4>
+            </button>
+            <div class="error-msg">
+              <img src="./assets/images/icon-error.svg" width="24" height="24" alt="error">
+              <span aria aria-label="polite" role="alert">Please select an answer</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

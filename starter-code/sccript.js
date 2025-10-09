@@ -1,3 +1,4 @@
+//theme customiation
 const theme = document.querySelector("#theme");
 const main = document.querySelector("main");
 
@@ -16,3 +17,4 @@ const changeTheme = () => {
 }
 
 theme.addEventListener("click", changeTheme)
+

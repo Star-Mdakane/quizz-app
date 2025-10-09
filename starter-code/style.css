@@ -28,7 +28,6 @@
     font-family: "Rubik", sans-serif;
 }
 
-input,
 button {
     appearance: none;
     border: none;
@@ -231,8 +230,8 @@ main {
 }
 
 .contaier-menu {
-    display: block;
-    display: flex;
+    display: none;
+    /* display: flex; */
     flex-direction: column;
     gap: 40px;
     text-align: center;
@@ -292,7 +291,7 @@ main {
     flex-direction: column;
     gap: 16px;
     text-align: center;
-    margin-top: 16px;
+    /* margin-top: 16px; */
 }
 
 .submit {
@@ -305,15 +304,121 @@ main {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    display: none;
+
 }
 
 .error-msg span {
     color: var(--red500);
 }
 
-.container-questions {}
+.container-questions {
+    /* display: flex; */
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+}
 
-.complete-container {}
+.question-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.question {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    & h5 {
+        color: var(--gy500);
+    }
+}
+
+.progress {
+    width: 100%;
+    padding: 4px;
+    height: 16px;
+    border-radius: 999px;
+    background-color: transparent;
+    display: flex;
+}
+
+input[type='range'] {
+    width: 100%;
+    cursor: pointer;
+    background: transparent;
+    accent-color: var(--purp600);
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+    /* color: black; */
+}
+
+input[type='range']:focus,
+input[type='range']:focus-visible {
+    outline: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    opacity: 0;
+}
+
+.solutions li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+
+    & span {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+        background-color: var(--gy50);
+        color: var(--gy500);
+        display: grid;
+        place-content: center;
+    }
+
+    & h4 {
+        color: inherit;
+    }
+}
+
+.complete-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+
+}
+
+.score-container h4 {
+    color: var(--gy500);
+}
+
+.score .subject-list {
+    display: flex;
+    justify-content: center;
+}
+
+.subject-item {
+    display: flex;
+    flex-direction: column;
+    /* text-align: center; */
+    gap: 16px;
+    padding: 32px;
+    background: inherit;
+    box-shadow: 5px 5px 15px rgb(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
 
 .btn {
     display: block;

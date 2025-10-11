@@ -33,6 +33,8 @@ button {
     border: none;
     outline: none;
     font-family: inherit;
+    transition: all 0.3s;
+
 }
 
 .m-text-1 {
@@ -114,6 +116,14 @@ main {
 
     & .button span {
         color: var(--white);
+    }
+
+    & #solutions li {
+        border: 3px solid var(--blue900);
+    }
+
+    & .button button {
+        border: 3px solid var(--blue900);
     }
 }
 
@@ -225,6 +235,7 @@ main {
     grid-template-columns: 1fr;
     gap: 16px;
     text-align: left;
+    transition: all 0.1s;
 }
 
 .subjects-container button {
@@ -234,6 +245,7 @@ main {
     color: inherit;
     align-items: center;
     justify-content: flex-start;
+    border: 3px solid inherit;
 }
 
 
@@ -264,6 +276,12 @@ main {
     gap: 16px;
     text-align: center;
     margin: 16px 0px;
+    transition: all 0.1s;
+
+
+    & .button {
+        border: 3px solid var(--white);
+    }
 }
 
 .submit {
@@ -336,10 +354,13 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .solutions li {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 16px;
+    border: 3px solid var(--white);
+    transition: all 0.3s;
 
     & span {
         width: 40px;
@@ -353,6 +374,11 @@ input[type='range']::-webkit-slider-thumb {
 
     & p {
         color: inherit;
+    }
+
+    & em {
+        position: absolute;
+        right: 2rem;
     }
 }
 
@@ -389,6 +415,50 @@ input[type='range']::-webkit-slider-thumb {
     border-radius: 12px;
     padding: 16px;
     width: 100%;
+}
+
+/* Active states */
+
+.subjects-container button:hover,
+.subjects-container button:focus-visible {
+    cursor: pointer;
+    transform: translateX(-0.3rem);
+
+}
+
+#solutions li:hover,
+#solutions li:focus-visible {
+    border-color: var(--purp600);
+}
+
+
+#solutions li:hover span,
+#solutions li:focus-visible span {
+    background-color: var(--purp600);
+    color: var(--white);
+}
+
+.submit:hover {
+    transform: scale(0.98);
+}
+
+#solutions li.correct {
+    border: 3px solid var(--gn500);
+
+    & span {
+        background-color: var(--gn500);
+        color: var(--white);
+    }
+}
+
+#solutions li.incorrect {
+    border: 3px solid var(--red500);
+
+    & span {
+        background-color: var(--red500);
+        color: var(--white);
+    }
+
 }
 
 
@@ -508,6 +578,7 @@ input[type='range']::-webkit-slider-thumb {
     .wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        column-gap: 128px;
     }
 
     .button {

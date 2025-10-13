@@ -74,11 +74,11 @@
       <div class="container-questions">
         <div class="question-container">
           <div class="question">
-            <h5 class="m-text-5">
+            <h5 class="m-text-5" id="counter">
               Question 6 of 10
             </h5>
             <h3 class="m-text-3" id="question">
-              Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?
+              <!-- Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text? -->
             </h3>
           </div>
           <div class="progress">
@@ -88,26 +88,26 @@
         </div>
         <div class="solutions">
           <ul id="solutions">
-            <li class="solution btn">
-              <span class="m-text-4">A</span>
-              <p class="m-text-4">4.5:1</p>
+            <li class="solution m-text-4 btn">
+
+              <p>4.5:1</p>
               <em hidden><img src="./assets/images/icon-correct.svg" alt="incorrect"></em>
               <em hidden><img src="./assets/images/icon-incorrect.svg" alt=""></em>
             </li>
             <li class="solution btn">
-              <span class="m-text-4">B</span>
+
               <p class="m-text-4">3:1</p>
               <em hidden><img src="./assets/images/icon-correct.svg" alt="correct"></em>
               <em hidden><img src="./assets/images/icon-incorrect.svg" alt="incorrect"></em>
             </li>
             <li class="solution btn">
-              <span class="m-text-4">C</span>
+
               <p class="m-text-4">2.5:1</p>
               <em hidden><img src="./assets/images/icon-correct.svg" alt="correct"></em>
               <em hidden><img src="./assets/images/icon-incorrect.svg" alt="incorrect"></em>
             </li>
             <li class="solution btn">
-              <span class="m-text-4">D</span>
+
               <p class="m-text-4">5:1</p>
               <em hidden><img src="./assets/images/icon-correct.svg" alt="correct"></em>
               <em hidden><img src="./assets/images/icon-incorrect.svg" alt="incorrect"></em>
@@ -130,18 +130,18 @@
               </div>
               <h4 class="m-text-4">Accessibility</h4>
             </div>
-            <div class="score-container">
-              <h1 class="m-text-1">8</h1>
-              <h4 class="m-text-4">out of 10</h4>
+            <div class="score-container" id="score-container">
+              <h1 class="m-text-1 total">8</h1>
+              <h4 class="m-text-4 output">out of 10</h4>
             </div>
           </div>
         </div>
       </div>
-      <div class="button">
-        <button class="submit btn" id="submit">
+      <div class="button" id="button">
+        <button class="submit btn" id="submit" disabled="true">
           <h4 class="m-text-4">Submit Answer</h4>
         </button>
-        <div class="error-msg">
+        <div class="error-msg" id="error-msg">
           <img src="./assets/images/icon-error.svg" width="24" height="24" alt="error">
           <span aria aria-label="polite" role="alert">Please select an answer</span>
         </div>

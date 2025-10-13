@@ -294,8 +294,6 @@ main {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    /* display: none; */
-
 }
 
 .error-msg span {
@@ -351,9 +349,11 @@ input[type='range']::-webkit-slider-thumb {
 #solutions {
     display: grid;
     gap: 16px;
+    counter-reset: alphabet-counter;
 }
 
-.solutions li {
+#solutions li {
+    counter-increment: alphabet-counter;
     position: relative;
     display: flex;
     align-items: center;
@@ -361,16 +361,6 @@ input[type='range']::-webkit-slider-thumb {
     gap: 16px;
     border: 3px solid var(--white);
     transition: all 0.3s;
-
-    & span {
-        width: 40px;
-        height: 40px;
-        border-radius: 6px;
-        background-color: var(--gy50);
-        color: var(--gy500);
-        display: grid;
-        place-content: center;
-    }
 
     & p {
         color: inherit;
@@ -380,6 +370,22 @@ input[type='range']::-webkit-slider-thumb {
         position: absolute;
         right: 2rem;
     }
+}
+
+#solutions li::before {
+    content: counter(alphabet-counter, upper-alpha) "";
+    /* margin-right: 5px; */
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: var(--gy50);
+    color: var(--gy500);
+    display: grid;
+    place-content: center;
+    font-size: 1.125rem;
+    line-height: 100%;
+    letter-spacing: 0px;
+    font-weight: 500;
 }
 
 .score {
@@ -426,9 +432,11 @@ input[type='range']::-webkit-slider-thumb {
 
 }
 
+
 #solutions li:hover,
 #solutions li:focus-visible {
     border-color: var(--purp600);
+    cursor: pointer;
 }
 
 
@@ -440,6 +448,13 @@ input[type='range']::-webkit-slider-thumb {
 
 .submit:hover {
     transform: scale(0.98);
+    cursor: pointer;
+}
+
+.submit:disabled {
+    transform: scale(0.98);
+    cursor: not-allowed;
+    opacity: 0.8;
 }
 
 #solutions li.correct {
@@ -458,6 +473,11 @@ input[type='range']::-webkit-slider-thumb {
         background-color: var(--red500);
         color: var(--white);
     }
+
+}
+
+#solutions li.selected {
+    border-color: var(--purp600);
 
 }
 
@@ -586,15 +606,6 @@ input[type='range']::-webkit-slider-thumb {
         grid-column: 2;
 
     }
-
-    /* button {
-        display: grid;
-        grid-template-columns: subgrid;
-        grid-column: 2 / -1;
-        width: 412px;
-    } */
-
-
 
     main {
         padding: 84px 140px 0px;

@@ -58,6 +58,8 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 2. I inserted my css basic styling.
 3. I did the html skeleton but after I was done doing 3 different UI containers, I'm thinking of combining them into one.
 4. I have a complete html structure. What has to be done is css wherre I have to style, hide and position the page elements then the rest will be left to be controlled via js.
+5. Completed media queries for the UI 
+N.B I COULD HAVE COMPLETED THIS CHALLENGE IN AN HOUR IF IT WERE NOT FOR FETCH!!!
 
 ### Built with
 
@@ -66,9 +68,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
+
 
 **Note: These are just examples. Delete this note and replace the list above with your own choices**
 
@@ -85,6 +85,7 @@ To see how you can add code snippets, see below:
 .proud-of-this-css {
   color: papayawhip;
 }
+CSS counters
 ```
 ```js
 const proudOfThisFunc = () => {

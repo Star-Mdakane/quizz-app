@@ -8,11 +8,11 @@ const changeTheme = () => {
     if (main.classList.contains("darkmode")) {
         tog.classList.add("dark")
         document.getElementById("sun").src = "./assets/images/icon-sun-light.svg"
-        document.getElementById("moon").src = "./assets/images/icon-sun-light.svg"
+        document.getElementById("moon").src = "./assets/images/icon-moon-light.svg"
     } else {
         tog.classList.remove("dark")
         document.getElementById("sun").src = "./assets/images/icon-sun-dark.svg"
-        document.getElementById("moon").src = "./assets/images/icon-sun-dark.svg"
+        document.getElementById("moon").src = "./assets/images/icon-moon-dark.svg"
     }
 }
 
@@ -72,10 +72,7 @@ const getRandomQuestion = (quizzesArray) => {
     return shuffledQuestions;
 };
 
-
-
 const renderQuizzes = (quizzes) => {
-    console.log("Render quizes calledwith data:", quizzes);
 
     if (quizzes && quizzes.quizzes) {
         if (shuffledQuestions.length === 0) {
@@ -93,15 +90,21 @@ const renderQuizzes = (quizzes) => {
 
         quiz.options.forEach((option) => {
             const listItem = document.createElement("li");
-            const icon = document.createElement("span");
             const corr = document.createElement("em");
-            const incorr = document.createElement("em");
+            const image = document.createElement("img");
+            image.classList.add("corrIcon");
             const para = document.createElement("p");
+            corr.appendChild(image);
             para.textContent = option;
-            listItem.append(icon, corr, incorr, para);
+            listItem.append(corr, para);
             listItem.classList.add("solution", "btn", "m-text-4");
             solutions.appendChild(listItem);
         });
+
+        const questionCount = questionIndex + 1
+        progressBar.value = questionCount;
+        quizCounter.textContent = `Question ${questionCount} of 10`
+
     } else {
         console.error("Invalid data", quizzes);
     }
@@ -144,10 +147,10 @@ const handleSelected = (e) => {
 
     if (liEl.tagName === "LI") {
         const currentSelected = solutions.querySelector(".selected");
-        console.log(currentSelected);
         if (currentSelected) {
             currentSelected.classList.remove("selected");
         }
+        console.log(currentSelected);
         liEl.classList.add("selected");
         submitBtn.disabled = false;
     }
@@ -162,26 +165,32 @@ const handleSubmit = (quiz) => {
         isCorrect ? handleCorrect() : handleIncorrect();
         solutions.querySelectorAll(".solution").forEach(option => option.style.pointerEvents = "none");
     }
-
 }
 
 const resetSelected = () => {
     currentSelected.classList.remove("selected");
-
-
 }
 
 const handleCorrect = () => {
     resetSelected()
-    currentSelected.classList.add("correct")
+    console.log(score);
 
+    currentSelected.classList.add("correct");
+    const imgEl = currentSelected.querySelector("em img");
+    imgEl.src = "./assets/images/icon-correct.svg"
+    score++;
+
+    return score;
 }
 
 const handleIncorrect = () => {
     resetSelected()
-    currentSelected.classList.add("incorrect")
-
+    currentSelected.classList.add("incorrect");
+    const imgEl = currentSelected.querySelector("em img");
+    imgEl.src = "./assets/images/icon-incorrect.svg"
 }
+
+console.log(score);
 
 const loadQuizzes = async () => {
     quizzes = await fetchQuizzes();

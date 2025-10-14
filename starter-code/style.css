@@ -332,9 +332,9 @@ input[type='range'] {
     accent-color: var(--purp600);
 }
 
-input[type='range']::-webkit-slider-runnable-track {
-    /* color: black; */
-}
+/* input[type='range']::-webkit-slider-runnable-track {
+    color: black;
+} */
 
 input[type='range']:focus,
 input[type='range']:focus-visible {
@@ -354,7 +354,7 @@ input[type='range']::-webkit-slider-thumb {
 
 #solutions li {
     counter-increment: alphabet-counter;
-    position: relative;
+    /* position: relative; */
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -367,8 +367,14 @@ input[type='range']::-webkit-slider-thumb {
     }
 
     & em {
-        position: absolute;
+        /* position: absolute; */
         right: 2rem;
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-content: center;
+        margin-left: auto;
+        order: 2;
     }
 }
 

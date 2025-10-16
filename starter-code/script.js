@@ -20,16 +20,20 @@ theme.addEventListener("click", changeTheme)
 
 //Variables
 
-const selectedQuiz = document.querySelector(".subject-list");
+const selectedQuiz = document.querySelector(".subject-list h4");
+const subIcon = document.querySelector(".subject-list img");
 const quizBtnContainer = document.querySelector("#subjects");
 const quizCounter = document.querySelector("#counter");
 const currentQuestion = document.querySelector("#question");
 const progressBar = document.querySelector("#progression");
 let solutions = document.querySelector("#solutions");
-const total = document.querySelector("#score-container total");
-const output = document.querySelector("#score-container output");
+let total = document.querySelector(".total");
+let output = document.querySelector("#score-container .output");
 const submitBtn = document.querySelector("#submit");
-const err = document.querySelector("#error-msg");
+// const err = document.querySelector("#error-msg");
+let menuPage = document.querySelector(".contaier-menu");
+let questionsPage = document.querySelector(".container-questions");
+let scorePage = document.querySelector(".complete-container");
 
 let quizzes;
 let score = 0;
@@ -38,8 +42,6 @@ let quizTitle = "html";
 let currentSelected;
 let shuffledQuestions = [];
 let isSubmitted = false;
-// let currentSelected = solutions.querySelector(".selected");
-
 
 //functions
 
@@ -75,6 +77,7 @@ const getRandomQuestion = (quizzesArray) => {
 const renderQuizzes = (quizzes) => {
 
     if (quizzes && quizzes.quizzes) {
+        submitBtn.style.display = "none";
         if (shuffledQuestions.length === 0) {
             getRandomQuestion(quizzes.quizzes);
         }
@@ -82,13 +85,16 @@ const renderQuizzes = (quizzes) => {
         const quiz = shuffledQuestions[questionIndex];
         solutions.innerHTML = '';
 
+
         if (shuffledQuestions.length > 0) {
             currentQuestion.textContent = quiz.question;
         } else {
             currentQuestion.textContent = "No questions found";
         }
 
-        quiz.options.forEach((option) => {
+        shuffle(quiz.options).forEach((option) => {
+
+
             const listItem = document.createElement("li");
             const corr = document.createElement("em");
             const image = document.createElement("img");
@@ -99,60 +105,133 @@ const renderQuizzes = (quizzes) => {
             listItem.append(corr, para);
             listItem.classList.add("solution", "btn", "m-text-4");
             solutions.appendChild(listItem);
+
         });
 
-        const questionCount = questionIndex + 1
+        const questionCount = questionIndex + 1;
         progressBar.value = questionCount;
-        quizCounter.textContent = `Question ${questionCount} of 10`
-
+        quizCounter.textContent = `Question ${questionCount} of 10`;
+        // err.style.display = "none";
     } else {
         console.error("Invalid data", quizzes);
     }
 
 };
 
+quizBtnContainer.querySelectorAll(".subject").forEach((sub) => {
+    sub.addEventListener("click", (e) => {
+        selectSubject(e)
+    })
+})
+
+const handleTotal = () => {
+    if (score) {
+        total.textContent = score;
+    }
+
+    if (score < 3) {
+        output.textContent = "Where you even trying?"
+    } else if (score < 7) {
+        output.textContent = "With a little more practice, you will eventually get there"
+
+    } else {
+        output.textContent = "You should consider a career in programming"
+    }
+
+}
+
+
 solutions.addEventListener("click", (e) => {
     handleSelected(e)
 });
 
 submitBtn.addEventListener("click", () => {
+    currentSelected = solutions.querySelector(".selected");
     if (!isSubmitted) {
-        const quiz = shuffledQuestions[questionIndex];
-        handleSubmit(quiz);
-        submitBtn.textContent = "Next Question";
-        isSubmitted = true;
+        if (currentSelected) {
+            const quiz = shuffledQuestions[questionIndex];
+            handleSubmit(quiz);
+            submitBtn.textContent = "Next Question";
+            isSubmitted = true;
+            // err.style.display = "none"
+        } else {
+            // err.style.display = "flex"
+        }
     } else {
-        nextQestion();
         submitBtn.textContent = "Submit Answer";
         isSubmitted = false;
         submitBtn.disabled = true;
+        submitBtn.classList.add("no-sel");
+        nextQuestion();
     }
 });
 
-const nextQestion = () => {
-    console.log("Next Question called");
+const nextQuestion = () => {
+
     questionIndex++;
     if (questionIndex >= shuffledQuestions.length) {
         console.log("Quiz finished");
+        questionsPage.style.display = "none";
+        scorePage.style.display = 'grid';
+        submitBtn.textContent = "Play Again";
+        submitBtn.disabled = false;
+        submitBtn.style.display = "block";
+        submitBtn.classList.remove('no-sel');
+        submitBtn.addEventListener("click", newGame)
         return;
     }
+
     renderQuizzes(quizzes);
+    submitBtn.style.display = "block";
     submitBtn.textContent = "Submit Answer"
     solutions.style.pointerEvents = "auto";
     submitBtn.disabled = true;
+    submitBtn.classList.add("no-sel");
 };
+
+const newGame = () => {
+    score = 0;
+    questionIndex = 0;
+    scorePage.style.display = "none";
+    menuPage.style.display = "grid";
+    submitBtn.textContent = "Play Again";
+    submitBtn.style.display = "none"
+    submitBtn.removeEventListener("click", newGame)
+};
+
+const selectSubject = (e) => {
+
+    const subBtn = e.target.closest(".subject") || e.target;
+    const subValue = subBtn.id;
+    quizTitle = subValue;
+    quiz = quizzes.quizzes.find(q => q.title.toLowerCase() === quizTitle.toLowerCase());
+    selectedQuiz.textContent = quiz.title;
+    subIcon.src = quiz.icon;
+    questionIndex = 0;
+    getRandomQuestion(quizzes.quizzes);
+    renderQuizzes(quizzes);
+    menuPage.style.display = "none";
+    questionsPage.style.display = "grid";
+    submitBtn.style.display = "block";
+
+    // return quizTitle;
+}
 
 const handleSelected = (e) => {
     const liEl = e.target.closest("LI") || e.target;
 
     if (liEl.tagName === "LI") {
-        const currentSelected = solutions.querySelector(".selected");
+        // currentSelected = solutions.querySelector(".selected");
         if (currentSelected) {
             currentSelected.classList.remove("selected");
         }
         console.log(currentSelected);
         liEl.classList.add("selected");
+        currentSelected = liEl;
         submitBtn.disabled = false;
+        submitBtn.classList.remove("no-sel");
+        // err.style.display = "none";
+
     }
 }
 
@@ -164,7 +243,9 @@ const handleSubmit = (quiz) => {
         const isCorrect = selectedOption.toLowerCase() === correctOption.toLowerCase();
         isCorrect ? handleCorrect() : handleIncorrect();
         solutions.querySelectorAll(".solution").forEach(option => option.style.pointerEvents = "none");
+
     }
+
 }
 
 const resetSelected = () => {
@@ -179,6 +260,7 @@ const handleCorrect = () => {
     const imgEl = currentSelected.querySelector("em img");
     imgEl.src = "./assets/images/icon-correct.svg"
     score++;
+    handleTotal();
 
     return score;
 }
@@ -189,8 +271,6 @@ const handleIncorrect = () => {
     const imgEl = currentSelected.querySelector("em img");
     imgEl.src = "./assets/images/icon-incorrect.svg"
 }
-
-console.log(score);
 
 const loadQuizzes = async () => {
     quizzes = await fetchQuizzes();

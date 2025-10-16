@@ -60,6 +60,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 4. I have a complete html structure. What has to be done is css wherre I have to style, hide and position the page elements then the rest will be left to be controlled via js.
 5. Completed media queries for the UI 
 N.B I COULD HAVE COMPLETED THIS CHALLENGE IN AN HOUR IF IT WERE NOT FOR FETCH!!!
+6. No matter how hard I tried showing the error when the button no item is selected, I just can't
 
 ### Built with
 

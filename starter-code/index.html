@@ -122,19 +122,19 @@
             <h2 class="m-text-2">You scored...</h2>
           </div>
         </div>
-        <div class="score">
+        <div class="score-output">
           <div class="subject-item">
             <div class="subject-list">
-              <div class="img">
+              <div class="img" id="sub-icon">
                 <img src="./assets/images/icon-accessibility.svg" width="28.57" height="28.57" alt="subject icon">
               </div>
-              <h4 class="m-text-4">Accessibility</h4>
+              <h4 class="m-text-4" id="sub-quiz">Accessibility</h4>
             </div>
             <div class="score-container" id="score-container">
               <h1 class="m-text-1 total">0</h1>
-              <h4 class="m-text-4 output">out of 10</h4>
+              <h4 class="m-text-4" id="outp">out of 10</h4>
             </div>
-            <form novalidate>
+            <form>
               <form-group>
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" class="name">
@@ -162,6 +162,30 @@
           <h2 class="m-text-4">Scores</h2>
         </button>
       </div>
+    </div>
+    <div class="s-container" id="s-container">
+      <h1 class="m-text-2">Welcome to the hall of fame</h1>
+      <h2 class="m-text-3">You are not here by mistake, you deserve to be here</h2>
+
+      <section class="score-card">
+        <h2 class="score-title m-text-3">
+          <!-- Html -->
+        </h2>
+        <ul class="score-list" id="score-list">
+          <!-- <li class="rank">
+                        <p class="name">Name: Star </p>
+                        <p class="s-score">Score: 10</p>
+                    </li>
+                    <li class="rank">
+                        <p class="name">Name: Star </p>
+                        <p class="s-score">Score: 10</p>
+                    </li>
+                    <li class="rank">
+                        <p class="name">Name: Star </p>
+                        <p class="s-score">Score: 10</p>
+                    </li> -->
+        </ul>
+      </section>
     </div>
   </main>
 </body>

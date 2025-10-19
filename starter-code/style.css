@@ -136,7 +136,7 @@ main {
 }
 
 .contaier-menu {
-    /* display: grid; */
+    display: grid;
     grid-template-columns: 1fr;
     gap: 40px;
     text-align: center;
@@ -151,7 +151,7 @@ main {
 
 
 .complete-container {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 1fr;
     gap: 40px;
 }
@@ -389,7 +389,7 @@ input[type='range']::-webkit-slider-thumb {
     font-weight: 500;
 }
 
-.score {
+.score-output {
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
@@ -674,7 +674,7 @@ input[type='range']::-webkit-slider-thumb {
     background-color: var(--purp600);
 }
 
-.score-container {
+.s-container {
     padding: 16px 24px;
     display: flex;
     flex-direction: column;

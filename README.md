@@ -62,6 +62,11 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 N.B I COULD HAVE COMPLETED THIS CHALLENGE IN AN HOUR IF IT WERE NOT FOR FETCH!!!
 6. No matter how hard I tried showing the error when the button no item is selected, I just can't
 
+
+Problems
+1. I can't edit the colors of the icon in the list items since I used csss counters.
+
+
 ### Built with
 
 - Semantic HTML5 markup

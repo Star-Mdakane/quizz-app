@@ -136,7 +136,7 @@ main {
 }
 
 .contaier-menu {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 1fr;
     gap: 40px;
     text-align: center;
@@ -151,7 +151,7 @@ main {
 
 
 .complete-container {
-    /* display: grid; */
+    display: grid;
     grid-template-columns: 1fr;
     gap: 40px;
 }
@@ -738,4 +738,74 @@ p.name {
 
 p.s-score {
     grid-column: 3 / 4;
+}
+
+/* index */
+.to-score-page {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scoresheet {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    justify-content: space-evenly;
+    color: inherit;
+    background-color: var(--purp600);
+}
+
+form input,
+form button {
+    appearance: none;
+    border: none;
+    outline: none;
+    color: inherit;
+    font-family: inherit;
+    background-color: inherit;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    transition: all 0.1s;
+
+    & form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    & label {
+        font-size: 1.5rem;
+    }
+
+    & input {
+        padding: 0.5rem;
+        width: 70%;
+        margin: 1rem auto;
+        font-size: 1.5rem;
+
+    }
+
+    & input:hover,
+    input:focus-visible {
+        border-bottom: 1px solid var(--purp600);
+        transform-origin: left;
+    }
+
+    & button {
+        padding: 0.5rem;
+        border: 1px solid var(--purp600);
+        width: 70%;
+        margin: 0 auto;
+        border-radius: 0.5rem;
+    }
+
+    & button:hover,
+    button:focus-visible {
+        background-color: var(--purp600);
+        cursor: pointer;
+    }
 }

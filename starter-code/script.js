@@ -292,6 +292,10 @@ if (window.location.href.includes('index.html')) {
         imgEl.src = "./assets/images/icon-incorrect.svg"
     }
 
+    document.getElementById('scoresheet').addEventListener('click', () => {
+        window.location.href = 'scores.html';
+    });
+
     const loadQuizzes = async () => {
         quizzes = await fetchQuizzes();
         const quizzesArray = quizzes.quizzes;

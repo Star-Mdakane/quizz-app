@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
   <title>Frontend Mentor | Frontend quiz app</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
@@ -134,6 +134,14 @@
               <h1 class="m-text-1 total">0</h1>
               <h4 class="m-text-4 output">out of 10</h4>
             </div>
+            <form novalidate>
+              <form-group>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" class="name">
+                <span aria-live="polite" role="alert" class="name-error" id="name-error" hidden>Please enter name</span>
+              </form-group>
+              <button class="saveScore">Save</button>
+            </form>
           </div>
         </div>
       </div>
@@ -145,6 +153,14 @@
           <img src="./assets/images/icon-error.svg" width="24" height="24" alt="error">
           <span aria aria-label="polite" role="alert">Please select an answer</span>
         </div>
+      </div>
+      <div class="to-score-page">
+        <button class="scoresheet btn" id="scoresheet">
+          <span class="material-symbols-rounded">
+            leaderboard
+          </span>
+          <h2 class="m-text-4">Scores</h2>
+        </button>
       </div>
     </div>
   </main>

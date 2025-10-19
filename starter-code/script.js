@@ -1,284 +1,311 @@
 //theme customiation
 const theme = document.querySelector("#theme");
 const main = document.querySelector("main");
+let darkmode = localStorage.getItem("darkmode")
+
+const enableDarkmode = () => {
+    main.classList.add("darkmode");
+    const tog = theme.querySelector(".toggle");
+    tog.classList.add("dark");
+    localStorage.setItem("darkmode", "active");
+    document.getElementById("sun").src = "./assets/images/icon-sun-light.svg"
+    document.getElementById("moon").src = "./assets/images/icon-moon-light.svg"
+}
+
+const disableDarkmode = () => {
+    main.classList.remove("darkmode");
+    const tog = theme.querySelector(".toggle");
+    tog.classList.remove("dark");
+    localStorage.removeItem("darkmode");
+    document.getElementById("sun").src = "./assets/images/icon-sun-dark.svg"
+    document.getElementById("moon").src = "./assets/images/icon-moon-dark.svg"
+}
+
+if (darkmode === "active") enableDarkmode();
 
 const changeTheme = () => {
-    main.classList.toggle("darkmode");
-    const tog = theme.querySelector(".toggle");
-    if (main.classList.contains("darkmode")) {
-        tog.classList.add("dark")
-        document.getElementById("sun").src = "./assets/images/icon-sun-light.svg"
-        document.getElementById("moon").src = "./assets/images/icon-moon-light.svg"
-    } else {
-        tog.classList.remove("dark")
-        document.getElementById("sun").src = "./assets/images/icon-sun-dark.svg"
-        document.getElementById("moon").src = "./assets/images/icon-moon-dark.svg"
-    }
+    darkmode = localStorage.getItem("darkmode");
+    darkmode !== "active" ? enableDarkmode() : disableDarkmode();
 }
 
-theme.addEventListener("click", changeTheme)
-
-//Variables
-
-const selectedQuiz = document.querySelector(".subject-list h4");
-const subIcon = document.querySelector(".subject-list img");
-const quizBtnContainer = document.querySelector("#subjects");
-const quizCounter = document.querySelector("#counter");
-const currentQuestion = document.querySelector("#question");
-const progressBar = document.querySelector("#progression");
-let solutions = document.querySelector("#solutions");
-let total = document.querySelector(".total");
-let output = document.querySelector("#score-container .output");
-const submitBtn = document.querySelector("#submit");
-// const err = document.querySelector("#error-msg");
-let menuPage = document.querySelector(".contaier-menu");
-let questionsPage = document.querySelector(".container-questions");
-let scorePage = document.querySelector(".complete-container");
-
-let quizzes;
-let score = 0;
-let questionIndex = 0;
-let quizTitle = "html";
-let currentSelected;
-let shuffledQuestions = [];
-let isSubmitted = false;
-
-//functions
-
-//Will be used to get random queston
-const shuffle = (arr) => {
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
+if (theme) {
+    theme.addEventListener("click", changeTheme);
+} else {
+    console.error("theme not found");
 }
 
-//fechQuizzes uses the fetch API to get the json data and make use of it as an object
-const fetchQuizzes = async () => {
-    try {
-        const response = await fetch("./data.json");
-        if (!response.ok) throw new Error(`HTTP error!: ${response.status}`);
-        const quizzes = await response.json();
-        return quizzes;
-    } catch (error) {
-        console.error(error);
-        throw error;
-    }
-};
+if (window.location.href.includes('index.html')) {
 
-const getRandomQuestion = (quizzesArray) => {
-    const quiz = quizzesArray.find((quiz) => quiz.title.toLowerCase() === quizTitle.toLowerCase());
-    if (!quiz) return [];
-    shuffledQuestions = shuffle(quiz.questions);
-    return shuffledQuestions;
-};
 
-const renderQuizzes = (quizzes) => {
 
-    if (quizzes && quizzes.quizzes) {
-        submitBtn.style.display = "none";
-        if (shuffledQuestions.length === 0) {
-            getRandomQuestion(quizzes.quizzes);
+    //Variables
+
+    const selectedQuiz = document.querySelector(".subject-list h4");
+    const subIcon = document.querySelector(".subject-list img");
+    const quizBtnContainer = document.querySelector("#subjects");
+    const quizCounter = document.querySelector("#counter");
+    const currentQuestion = document.querySelector("#question");
+    const progressBar = document.querySelector("#progression");
+    let solutions = document.querySelector("#solutions");
+    let total = document.querySelector(".total");
+    let output = document.querySelector("#score-container .output");
+    const submitBtn = document.querySelector("#submit");
+    // const err = document.querySelector("#error-msg");
+    let menuPage = document.querySelector(".contaier-menu");
+    let questionsPage = document.querySelector(".container-questions");
+    let scorePage = document.querySelector(".complete-container");
+
+    let quizzes;
+    let score = 0;
+    let questionIndex = 0;
+    let quizTitle = "html";
+    let currentSelected;
+    let shuffledQuestions = [];
+    let isSubmitted = false;
+
+    //functions
+
+    //Will be used to get random queston
+    const shuffle = (arr) => {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
         }
+        return arr;
+    }
 
-        const quiz = shuffledQuestions[questionIndex];
-        solutions.innerHTML = '';
-
-
-        if (shuffledQuestions.length > 0) {
-            currentQuestion.textContent = quiz.question;
-        } else {
-            currentQuestion.textContent = "No questions found";
+    //fechQuizzes uses the fetch API to get the json data and make use of it as an object
+    const fetchQuizzes = async () => {
+        try {
+            const response = await fetch("./data.json");
+            if (!response.ok) throw new Error(`HTTP error!: ${response.status}`);
+            const quizzes = await response.json();
+            return quizzes;
+        } catch (error) {
+            console.error(error);
+            throw error;
         }
+    };
 
-        shuffle(quiz.options).forEach((option) => {
+    const getRandomQuestion = (quizzesArray) => {
+        const quiz = quizzesArray.find((quiz) => quiz.title.toLowerCase() === quizTitle.toLowerCase());
+        if (!quiz) return [];
+        shuffledQuestions = shuffle(quiz.questions);
+        return shuffledQuestions;
+    };
 
+    const renderQuizzes = (quizzes) => {
 
-            const listItem = document.createElement("li");
-            const corr = document.createElement("em");
-            const image = document.createElement("img");
-            image.classList.add("corrIcon");
-            const para = document.createElement("p");
-            corr.appendChild(image);
-            para.textContent = option;
-            listItem.append(corr, para);
-            listItem.classList.add("solution", "btn", "m-text-4");
-            solutions.appendChild(listItem);
+        if (quizzes && quizzes.quizzes) {
+            submitBtn.style.display = "none";
+            if (shuffledQuestions.length === 0) {
+                getRandomQuestion(quizzes.quizzes);
+            }
 
-        });
-
-        const questionCount = questionIndex + 1;
-        progressBar.value = questionCount;
-        quizCounter.textContent = `Question ${questionCount} of 10`;
-        // err.style.display = "none";
-    } else {
-        console.error("Invalid data", quizzes);
-    }
-
-};
-
-quizBtnContainer.querySelectorAll(".subject").forEach((sub) => {
-    sub.addEventListener("click", (e) => {
-        selectSubject(e)
-    })
-})
-
-const handleTotal = () => {
-    if (score) {
-        total.textContent = score;
-    }
-
-    if (score < 3) {
-        output.textContent = "Where you even trying?"
-    } else if (score < 7) {
-        output.textContent = "With a little more practice, you will eventually get there"
-
-    } else {
-        output.textContent = "You should consider a career in programming"
-    }
-
-}
-
-
-solutions.addEventListener("click", (e) => {
-    handleSelected(e)
-});
-
-submitBtn.addEventListener("click", () => {
-    currentSelected = solutions.querySelector(".selected");
-    if (!isSubmitted) {
-        if (currentSelected) {
             const quiz = shuffledQuestions[questionIndex];
-            handleSubmit(quiz);
-            submitBtn.textContent = "Next Question";
-            isSubmitted = true;
-            // err.style.display = "none"
+            solutions.innerHTML = '';
+
+
+            if (shuffledQuestions.length > 0) {
+                currentQuestion.textContent = quiz.question;
+            } else {
+                currentQuestion.textContent = "No questions found";
+            }
+
+            shuffle(quiz.options).forEach((option) => {
+
+
+                const listItem = document.createElement("li");
+                const corr = document.createElement("em");
+                const image = document.createElement("img");
+                image.classList.add("corrIcon");
+                const para = document.createElement("p");
+                corr.appendChild(image);
+                para.textContent = option;
+                listItem.append(corr, para);
+                listItem.classList.add("solution", "btn", "m-text-4");
+                solutions.appendChild(listItem);
+
+            });
+
+            const questionCount = questionIndex + 1;
+            progressBar.value = questionCount;
+            quizCounter.textContent = `Question ${questionCount} of 10`;
+            // err.style.display = "none";
         } else {
-            // err.style.display = "flex"
+            console.error("Invalid data", quizzes);
         }
-    } else {
-        submitBtn.textContent = "Submit Answer";
-        isSubmitted = false;
+
+    };
+
+    quizBtnContainer.querySelectorAll(".subject").forEach((sub) => {
+        sub.addEventListener("click", (e) => {
+            selectSubject(e)
+        })
+    })
+
+    const handleTotal = () => {
+        if (score) {
+            total.textContent = score;
+        }
+
+        if (score < 3) {
+            output.textContent = "Where you even trying?"
+        } else if (score < 7) {
+            output.textContent = "With a little more practice, you will eventually get there"
+
+        } else {
+            output.textContent = "You should consider a career in programming"
+        }
+
+    }
+
+
+    solutions.addEventListener("click", (e) => {
+        handleSelected(e)
+    });
+
+    submitBtn.addEventListener("click", () => {
+        currentSelected = solutions.querySelector(".selected");
+        if (!isSubmitted) {
+            if (currentSelected) {
+                const quiz = shuffledQuestions[questionIndex];
+                handleSubmit(quiz);
+                submitBtn.textContent = "Next Question";
+                isSubmitted = true;
+                // err.style.display = "none"
+            } else {
+                // err.style.display = "flex"
+            }
+        } else {
+            submitBtn.textContent = "Submit Answer";
+            isSubmitted = false;
+            submitBtn.disabled = true;
+            submitBtn.classList.add("no-sel");
+            nextQuestion();
+        }
+    });
+
+    const nextQuestion = () => {
+
+        questionIndex++;
+        if (questionIndex >= shuffledQuestions.length) {
+            console.log("Quiz finished");
+            questionsPage.style.display = "none";
+            scorePage.style.display = 'grid';
+            submitBtn.textContent = "Play Again";
+            submitBtn.disabled = false;
+            submitBtn.style.display = "block";
+            submitBtn.classList.remove('no-sel');
+            submitBtn.addEventListener("click", newGame)
+            return;
+        }
+
+        renderQuizzes(quizzes);
+        submitBtn.style.display = "block";
+        submitBtn.textContent = "Submit Answer"
+        solutions.style.pointerEvents = "auto";
         submitBtn.disabled = true;
         submitBtn.classList.add("no-sel");
-        nextQuestion();
-    }
-});
+    };
 
-const nextQuestion = () => {
-
-    questionIndex++;
-    if (questionIndex >= shuffledQuestions.length) {
-        console.log("Quiz finished");
-        questionsPage.style.display = "none";
-        scorePage.style.display = 'grid';
+    const newGame = () => {
+        score = 0;
+        questionIndex = 0;
+        scorePage.style.display = "none";
+        menuPage.style.display = "grid";
         submitBtn.textContent = "Play Again";
-        submitBtn.disabled = false;
+        submitBtn.style.display = "none"
+        submitBtn.removeEventListener("click", newGame)
+    };
+
+    const selectSubject = (e) => {
+
+        const subBtn = e.target.closest(".subject") || e.target;
+        const subValue = subBtn.id;
+        quizTitle = subValue;
+        quiz = quizzes.quizzes.find(q => q.title.toLowerCase() === quizTitle.toLowerCase());
+        selectedQuiz.textContent = quiz.title;
+        subIcon.src = quiz.icon;
+        questionIndex = 0;
+        getRandomQuestion(quizzes.quizzes);
+        renderQuizzes(quizzes);
+        menuPage.style.display = "none";
+        questionsPage.style.display = "grid";
         submitBtn.style.display = "block";
-        submitBtn.classList.remove('no-sel');
-        submitBtn.addEventListener("click", newGame)
-        return;
+
+        // return quizTitle;
     }
 
-    renderQuizzes(quizzes);
-    submitBtn.style.display = "block";
-    submitBtn.textContent = "Submit Answer"
-    solutions.style.pointerEvents = "auto";
-    submitBtn.disabled = true;
-    submitBtn.classList.add("no-sel");
-};
+    const handleSelected = (e) => {
+        const liEl = e.target.closest("LI") || e.target;
 
-const newGame = () => {
-    score = 0;
-    questionIndex = 0;
-    scorePage.style.display = "none";
-    menuPage.style.display = "grid";
-    submitBtn.textContent = "Play Again";
-    submitBtn.style.display = "none"
-    submitBtn.removeEventListener("click", newGame)
-};
+        if (liEl.tagName === "LI") {
+            // currentSelected = solutions.querySelector(".selected");
+            if (currentSelected) {
+                currentSelected.classList.remove("selected");
+            }
+            console.log(currentSelected);
+            liEl.classList.add("selected");
+            currentSelected = liEl;
+            submitBtn.disabled = false;
+            submitBtn.classList.remove("no-sel");
+            // err.style.display = "none";
 
-const selectSubject = (e) => {
-
-    const subBtn = e.target.closest(".subject") || e.target;
-    const subValue = subBtn.id;
-    quizTitle = subValue;
-    quiz = quizzes.quizzes.find(q => q.title.toLowerCase() === quizTitle.toLowerCase());
-    selectedQuiz.textContent = quiz.title;
-    subIcon.src = quiz.icon;
-    questionIndex = 0;
-    getRandomQuestion(quizzes.quizzes);
-    renderQuizzes(quizzes);
-    menuPage.style.display = "none";
-    questionsPage.style.display = "grid";
-    submitBtn.style.display = "block";
-
-    // return quizTitle;
-}
-
-const handleSelected = (e) => {
-    const liEl = e.target.closest("LI") || e.target;
-
-    if (liEl.tagName === "LI") {
-        // currentSelected = solutions.querySelector(".selected");
-        if (currentSelected) {
-            currentSelected.classList.remove("selected");
         }
-        console.log(currentSelected);
-        liEl.classList.add("selected");
-        currentSelected = liEl;
-        submitBtn.disabled = false;
-        submitBtn.classList.remove("no-sel");
-        // err.style.display = "none";
-
     }
-}
 
-const handleSubmit = (quiz) => {
-    currentSelected = solutions.querySelector(".selected")
-    const correctOption = quiz.answer;
-    if (currentSelected) {
-        const selectedOption = currentSelected.querySelector("p").textContent;
-        const isCorrect = selectedOption.toLowerCase() === correctOption.toLowerCase();
-        isCorrect ? handleCorrect() : handleIncorrect();
-        solutions.querySelectorAll(".solution").forEach(option => option.style.pointerEvents = "none");
+    const handleSubmit = (quiz) => {
+        currentSelected = solutions.querySelector(".selected")
+        const correctOption = quiz.answer;
+        if (currentSelected) {
+            const selectedOption = currentSelected.querySelector("p").textContent;
+            const isCorrect = selectedOption.toLowerCase() === correctOption.toLowerCase();
+            isCorrect ? handleCorrect() : handleIncorrect();
+            solutions.querySelectorAll(".solution").forEach(option => option.style.pointerEvents = "none");
+
+        }
 
     }
 
+    const resetSelected = () => {
+        currentSelected.classList.remove("selected");
+    }
+
+    const handleCorrect = () => {
+        resetSelected()
+        console.log(score);
+
+        currentSelected.classList.add("correct");
+        const imgEl = currentSelected.querySelector("em img");
+        imgEl.src = "./assets/images/icon-correct.svg"
+        score++;
+        handleTotal();
+
+        return score;
+    }
+
+    const handleIncorrect = () => {
+        resetSelected()
+        currentSelected.classList.add("incorrect");
+        const imgEl = currentSelected.querySelector("em img");
+        imgEl.src = "./assets/images/icon-incorrect.svg"
+    }
+
+    const loadQuizzes = async () => {
+        quizzes = await fetchQuizzes();
+        const quizzesArray = quizzes.quizzes;
+        getRandomQuestion(quizzesArray);
+        renderQuizzes(quizzes);
+    }
+
+    loadQuizzes();
+} else {
+    document.getElementById('restart').addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
 }
 
-const resetSelected = () => {
-    currentSelected.classList.remove("selected");
-}
 
-const handleCorrect = () => {
-    resetSelected()
-    console.log(score);
-
-    currentSelected.classList.add("correct");
-    const imgEl = currentSelected.querySelector("em img");
-    imgEl.src = "./assets/images/icon-correct.svg"
-    score++;
-    handleTotal();
-
-    return score;
-}
-
-const handleIncorrect = () => {
-    resetSelected()
-    currentSelected.classList.add("incorrect");
-    const imgEl = currentSelected.querySelector("em img");
-    imgEl.src = "./assets/images/icon-incorrect.svg"
-}
-
-const loadQuizzes = async () => {
-    quizzes = await fetchQuizzes();
-    const quizzesArray = quizzes.quizzes;
-    getRandomQuestion(quizzesArray);
-    renderQuizzes(quizzes);
-}
-
-loadQuizzes();
 
 

@@ -198,7 +198,6 @@ const renderQuizzes = (quizzes) => {
 
         shuffle(quiz.options).forEach((option) => {
 
-
             const listItem = document.createElement("li");
             const corr = document.createElement("em");
             const image = document.createElement("img");
@@ -209,7 +208,6 @@ const renderQuizzes = (quizzes) => {
             listItem.append(corr, para);
             listItem.classList.add("solution", "btn", "m-text-4");
             solutions.appendChild(listItem);
-
         });
 
         const questionCount = questionIndex + 1;
@@ -219,7 +217,6 @@ const renderQuizzes = (quizzes) => {
     } else {
         console.error("Invalid data", quizzes);
     }
-
 };
 
 quizBtnContainer.querySelectorAll(".subject").forEach((sub) => {
@@ -248,7 +245,6 @@ const handleTotal = () => {
         }
     }
 }
-
 
 solutions.addEventListener("click", (e) => {
     handleSelected(e)
@@ -325,8 +321,6 @@ const selectSubject = (e) => {
     const subValue = subBtn.id;
     quizTitle = subValue;
     quiz = quizzes.quizzes.find(q => q.title.toLowerCase() === quizTitle.toLowerCase());
-    console.log(quiz);
-
     currentSubject = quizTitle;
     selectedQuiz.textContent = quiz.title;
     subIcon.src = quiz.icon;
@@ -337,14 +331,12 @@ const selectSubject = (e) => {
     questionsPage.style.display = "grid";
     submitBtn.style.display = "block";
 
-    // return quizTitle;
 }
 
 const handleSelected = (e) => {
     const liEl = e.target.closest("LI") || e.target;
 
     if (liEl.tagName === "LI") {
-        // currentSelected = solutions.querySelector(".selected");
         if (currentSelected) {
             currentSelected.classList.remove("selected");
         }
@@ -367,7 +359,6 @@ const handleSubmit = (quiz) => {
         solutions.querySelectorAll(".solution").forEach(option => option.style.pointerEvents = "none");
 
     }
-
 }
 
 const resetSelected = () => {
@@ -376,7 +367,6 @@ const resetSelected = () => {
 
 const handleCorrect = () => {
     resetSelected()
-    console.log(score);
 
     currentSelected.classList.add("correct");
     const imgEl = currentSelected.querySelector("em img");

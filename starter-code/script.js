@@ -41,49 +41,40 @@ console.log(quizTitle);
 
 function renderScoreCards() {
     const scores = JSON.parse(localStorage.getItem('scores')) || {};
-    const scoreContainer = document.getElementById('s-container');
+    const scoreCardTemplate = document.querySelector('.score-card');
 
-    scoreContainer.innerHTML = '';
+    scoreCardTemplate.style.display = 'none';
 
-    Object.keys(scores).forEach((subject) => {
-        const scoreCard = document.createElement('div');
-        scoreCard.innerHTML = `
-      <div class="score-card">
-        <h2 class="score-title"></h2>
-        <ul class="score-list"></ul>
-      </div>
-    `;
-        scoreContainer.appendChild(scoreCard);
+    Object.keys(scores).forEach((subject, index) => {
+        const newScoreCard = scoreCardTemplate.cloneNode(true);
+        newScoreCard.style.display = 'block';
 
-        generateScoreCard(subject, scores[subject], scoreCard);
+        if (index > 0) {
+            scoreCardTemplate.parentNode.appendChild(newScoreCard);
+        } else {
+            scoreCardTemplate.parentNode.insertBefore(newScoreCard, scoreCardTemplate);
+        }
+
+        generateScoreCard(subject, scores[subject], newScoreCard);
     });
 }
 
 const generateScoreCard = (subject, scores, scoreCard) => {
+    const scoreTitle = scoreCard.querySelector('#score-title');
+    const scoreList = scoreCard.querySelector('#score-list');
 
-    if (scoreCard) {
-        const scoreTitle = scoreCard.querySelector('.score-title');
-        const scoreList = scoreCard.querySelector('.score-list');
+    scoreTitle.textContent = subject;
+    scoreList.innerHTML = '';
 
-        if (scoreTitle && scoreList) {
-            scoreTitle.textContent = subject;
-            scoreList.innerHTML = '';
-
-            scores.forEach((score) => {
-                const scoreItem = document.createElement('li');
-                scoreItem.classList.add('rank');
-                scoreItem.innerHTML = `
-          <p class="name">Name: ${score.name}</p>
-          <p class="s-score">Score: ${score.score}</p>
-        `;
-                scoreList.appendChild(scoreItem);
-            });
-        } else {
-            console.error('Score title or score list element not found.');
-        }
-    } else {
-        console.error('Score card element not found.');
-    }
+    scores.forEach((score) => {
+        const scoreItem = document.createElement('li');
+        scoreItem.classList.add('rank');
+        scoreItem.innerHTML = `
+      <p class="name">Name: ${score.name}</p>
+      <p class="s-score">Score: ${score.score}</p>
+    `;
+        scoreList.appendChild(scoreItem);
+    });
 };
 
 function saveScore(name, score) {

@@ -17,9 +17,10 @@
     <header class="selected-subject">
       <div class="subject-list">
         <div class="img">
-          <img src="./assets/images/icon-accessibility.svg" width="28.57" height="28.57" alt="subject icon">
+          <img src="./assets/images/icon-accessibility.svg" id="sub-icon" width="28.57" height="28.57"
+            alt="subject icon">
         </div>
-        <h4 class="m-text-4">Accessibility</h4>
+        <h4 class="m-text-4" id="sub-quiz">Accessibility</h4>
       </div>
       <button id="theme" class="toggle-container">
         <img id="sun" src="./assets/images/icon-sun-dark.svg" width="16" height="16" alt="subject icon">
@@ -125,10 +126,11 @@
         <div class="score-output">
           <div class="subject-item">
             <div class="subject-list">
-              <div class="img" id="sub-icon">
-                <img src="./assets/images/icon-accessibility.svg" width="28.57" height="28.57" alt="subject icon">
+              <div class="img">
+                <img src="./assets/images/icon-accessibility.svg" id="sub-icon" width="28.57" height="28.57"
+                  alt="subject icon">
               </div>
-              <h4 class="m-text-4" id="sub-quiz">Accessibility</h4>
+              <h4 class="m-text-4" id="sub-quiz"></h4>
             </div>
             <div class="score-container" id="score-container">
               <h1 class="m-text-1 total">0</h1>
@@ -154,38 +156,41 @@
           <span aria aria-label="polite" role="alert">Please select an answer</span>
         </div>
       </div>
-      <div class="to-score-page">
-        <button class="scoresheet btn" id="scoresheet">
-          <span class="material-symbols-rounded">
-            leaderboard
-          </span>
-          <h2 class="m-text-4">Scores</h2>
-        </button>
-      </div>
     </div>
     <div class="s-container" id="s-container">
       <h1 class="m-text-2">Welcome to the hall of fame</h1>
       <h2 class="m-text-3">You are not here by mistake, you deserve to be here</h2>
 
-      <section class="score-card" id="score-card">
-        <h2 class="s-title m-text-3" id="score-title">
-          <!-- Html -->
-        </h2>
-        <ul class="score-list" id="score-list">
-          <!-- <li class="rank">
-                        <p class="name">Name: Star </p>
-                        <p class="s-score">Score: 10</p>
-                    </li>
-                    <li class="rank">
-                        <p class="name">Name: Star </p>
-                        <p class="s-score">Score: 10</p>
-                    </li>
-                    <li class="rank">
-                        <p class="name">Name: Star </p>
-                        <p class="s-score">Score: 10</p>
-                    </li> -->
-        </ul>
-      </section>
+      <div class="score-card-container">
+
+        <section class="score-card" id="score-card">
+          <h2 class="s-title m-text-3" id="score-title">
+            <!-- Html -->
+          </h2>
+          <ul class="score-list" id="score-list">
+            <!-- <li class="rank">
+                          <p class="name">Name: Star </p>
+                          <p class="s-score">Score: 10</p>
+                      </li>
+                      <li class="rank">
+                          <p class="name">Name: Star </p>
+                          <p class="s-score">Score: 10</p>
+                      </li>
+                      <li class="rank">
+                          <p class="name">Name: Star </p>
+                          <p class="s-score">Score: 10</p>
+                      </li> -->
+          </ul>
+        </section>
+      </div>
+    </div>
+    <div class="to-score-page">
+      <button class="scoresheet btn" id="scoresheet">
+        <span class="material-symbols-rounded">
+          leaderboard
+        </span>
+        <h2 class="m-text-4">Scores</h2>
+      </button>
     </div>
   </main>
 </body>

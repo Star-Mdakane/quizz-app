@@ -62,6 +62,9 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 N.B I COULD HAVE COMPLETED THIS CHALLENGE IN AN HOUR IF IT WERE NOT FOR FETCH!!!
 6. No matter how hard I tried showing the error when the button no item is selected, I just can't
 
+I AM DONE BUT THERE ARE A COUPLE OF BUGS AFTER ALL. I CANNOT DISABLE THE SUBMIT BUTTON AT THE END OF THE QUIZ FOR USER TO SAVE THEIR SCORE.
+THE ERROR MESSAGE I CAN NOT MAKE IT APPEAR AFTER FIRST QUESTION BUT THE BUTTON IS DISABLED.
+
 
 Problems
 1. I can't edit the colors of the icon in the list items since I used csss counters.

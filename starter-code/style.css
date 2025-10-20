@@ -683,12 +683,17 @@ input[type='range']::-webkit-slider-thumb {
     gap: 2rem;
 }
 
+.score-card-container {
+    max-width: 700px;
+}
+
 .score-card {
-    width: 700px;
+    width: 100%;
     border: 1px solid var(--purp600);
     border-radius: 0.5rem;
     padding: 1rem;
     text-align: center;
+    margin-bottom: 3rem;
 }
 
 .s-title {
@@ -704,12 +709,11 @@ input[type='range']::-webkit-slider-thumb {
 
 .rank {
     display: grid;
-    grid-template-columns: 1fr 3fr 3fr;
+    grid-template-columns: 3rem 3fr 3fr;
     border-bottom: 1px solid var(--purp100);
     padding: 0.5rem;
     text-align: center;
     justify-content: center;
-
 
     & p {
         border-left: 1px solid var(--purp100);
@@ -735,10 +739,13 @@ input[type='range']::-webkit-slider-thumb {
 
 p.name {
     grid-column: 2 / 3;
+    padding: 0.5rem 2rem;
 }
 
 p.s-score {
     grid-column: 3 / 4;
+    padding: 0.5rem 2rem;
+
 }
 
 /* index */

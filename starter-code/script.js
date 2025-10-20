@@ -1,3 +1,27 @@
+const selectedQuiz = document.querySelector("#sub-quiz");
+const subIcon = document.querySelector("#sub-icon");
+const quizBtnContainer = document.querySelector("#subjects");
+const quizCounter = document.querySelector("#counter");
+const currentQuestion = document.querySelector("#question");
+const progressBar = document.querySelector("#progression");
+const submitBtn = document.querySelector("#submit");
+let solutions = document.querySelector("#solutions");
+let total = document.querySelector(".total");
+let output = document.querySelector("#outp");
+// const err = document.querySelector("#error-msg");
+let menuPage = document.querySelector(".contaier-menu");
+let questionsPage = document.querySelector(".container-questions");
+let scorePage = document.querySelector(".complete-container");
+
+let quizzes;
+let score = 0;
+let questionIndex = 0;
+let currentSelected;
+let shuffledQuestions = [];
+let isSubmitted = false;
+let currentSubject;
+let quizTitle = "html";
+
 //theme customiation
 const theme = document.querySelector("#theme");
 const main = document.querySelector("main");
@@ -34,9 +58,6 @@ if (theme) {
     console.error("theme not found");
 }
 
-let currentSubject;
-let quizTitle = "html";
-console.log(quizTitle);
 
 
 function renderScoreCards() {
@@ -44,6 +65,10 @@ function renderScoreCards() {
     const scoreCardTemplate = document.querySelector('.score-card');
 
     scoreCardTemplate.style.display = 'none';
+
+    const scoreCardContainer = scoreCardTemplate.parentNode;
+
+    scoreCardContainer.querySelectorAll('.score-card:not([style*="display: none"])');
 
     Object.keys(scores).forEach((subject, index) => {
         const newScoreCard = scoreCardTemplate.cloneNode(true);
@@ -70,8 +95,8 @@ const generateScoreCard = (subject, scores, scoreCard) => {
         const scoreItem = document.createElement('li');
         scoreItem.classList.add('rank');
         scoreItem.innerHTML = `
-      <p class="name">Name: ${score.name}</p>
-      <p class="s-score">Score: ${score.score}</p>
+      <p class="name"> ${score.name}</p>
+      <p class="s-score"> ${score.score}</p>
     `;
         scoreList.appendChild(scoreItem);
     });
@@ -99,21 +124,21 @@ if (saveScoreButton) {
         const score = totalElement ? totalElement.textContent : '';
         const subject = quizTitle;
 
-        console.log('Name:', name);
-        console.log('Score:', score);
-        console.log('Subject:', subject);
-
         if (name !== '' && score !== '' && subject !== '') {
             document.querySelector('#name-error').setAttribute('hidden', true);
             console.log('Quiz Title:', quizTitle);
             saveScore(name, score);
             renderScoreCards();
             document.querySelector('form').reset();
+            scoreContainer.style.display = 'flex';
+            wrapper.style.display = 'none';
         } else {
             document.querySelector('#name-error').removeAttribute('hidden');
         }
+        document.querySelectorAll('button').forEach((button) => {
+            button.disabled = false;
+        });
     });
-
 
     document.addEventListener('DOMContentLoaded', () => {
         renderScoreCards();
@@ -121,29 +146,6 @@ if (saveScoreButton) {
 } else {
     console.error('Save score button not found');
 }
-
-const selectedQuiz = document.querySelector("#sub-quiz");
-const subIcon = document.querySelector("#sub-quiz");
-const quizBtnContainer = document.querySelector("#subjects");
-const quizCounter = document.querySelector("#counter");
-const currentQuestion = document.querySelector("#question");
-const progressBar = document.querySelector("#progression");
-let solutions = document.querySelector("#solutions");
-let total = document.querySelector(".total");
-let output = document.querySelector("#outp");
-const submitBtn = document.querySelector("#submit");
-// const err = document.querySelector("#error-msg");
-let menuPage = document.querySelector(".contaier-menu");
-let questionsPage = document.querySelector(".container-questions");
-let scorePage = document.querySelector(".complete-container");
-
-let quizzes;
-let score = 0;
-let questionIndex = 0;
-// let quizTitle = "html";
-let currentSelected;
-let shuffledQuestions = [];
-let isSubmitted = false;
 
 //functions
 
@@ -229,6 +231,7 @@ quizBtnContainer.querySelectorAll(".subject").forEach((sub) => {
 const handleTotal = () => {
     if (score) {
         total.textContent = score;
+        document.querySelector('form').style.display = 'none';
     }
 
     if (score < 3) {
@@ -240,10 +243,10 @@ const handleTotal = () => {
         output.textContent = "You should consider a career in programming";
         document.querySelector('form').style.display = 'block';
         document.querySelector('form').classList.remove('hidden');
-
+        if (scorePage.style.display === 'grid' && document.querySelector('form').style.display === 'grid') {
+            submitBtn.disabled = true;
+        }
     }
-
-
 }
 
 
@@ -279,11 +282,16 @@ const nextQuestion = () => {
         console.log("Quiz finished");
         questionsPage.style.display = "none";
         scorePage.style.display = 'grid';
+        submitBtn.disabled = true;
+        saveScoreButton.disabled = false;
+        document.querySelectorAll('button:not(.saveScore)').forEach((button) => {
+            button.disabled = true;
+        });
         submitBtn.textContent = "Play Again";
         submitBtn.disabled = false;
         submitBtn.style.display = "block";
         submitBtn.classList.remove('no-sel');
-        submitBtn.addEventListener("click", newGame)
+        submitBtn.addEventListener("click", newGame);
         return;
     }
 
@@ -301,8 +309,14 @@ const newGame = () => {
     scorePage.style.display = "none";
     menuPage.style.display = "grid";
     submitBtn.textContent = "Play Again";
-    submitBtn.style.display = "none"
+    submitBtn.style.display = "none";
+    if (submitBtn.textContent === "Play Again") {
+        submitBtn.disabled = true;
+    }
     submitBtn.removeEventListener("click", newGame)
+    document.querySelectorAll('button').forEach((button) => {
+        button.disabled = false;
+    });
 };
 
 const selectSubject = (e) => {
@@ -311,6 +325,8 @@ const selectSubject = (e) => {
     const subValue = subBtn.id;
     quizTitle = subValue;
     quiz = quizzes.quizzes.find(q => q.title.toLowerCase() === quizTitle.toLowerCase());
+    console.log(quiz);
+
     currentSubject = quizTitle;
     selectedQuiz.textContent = quiz.title;
     subIcon.src = quiz.icon;
@@ -335,10 +351,9 @@ const handleSelected = (e) => {
         console.log(currentSelected);
         liEl.classList.add("selected");
         currentSelected = liEl;
-        submitBtn.disabled = false;
         submitBtn.classList.remove("no-sel");
+        submitBtn.disabled = false;
         // err.style.display = "none";
-
     }
 }
 
@@ -379,10 +394,6 @@ const handleIncorrect = () => {
     imgEl.src = "./assets/images/icon-incorrect.svg"
 }
 
-document.getElementById('scoresheet').addEventListener('click', () => {
-    window.location.href = 'scores.html';
-});
-
 const loadQuizzes = async () => {
     quizzes = await fetchQuizzes();
     const quizzesArray = quizzes.quizzes;
@@ -392,6 +403,34 @@ const loadQuizzes = async () => {
 
 loadQuizzes();
 
-// document.getElementById('restart').addEventListener('click', () => {
-//     window.location.href = 'index.html';
-// });
+const scoreContainer = document.getElementById('s-container');
+const wrapper = document.querySelector('.wrapper');
+const scoresheetButton = document.getElementById('scoresheet');
+
+scoreContainer.style.display = 'none';
+
+scoresheetButton.addEventListener('click', () => {
+    toggleScoreContainer();
+});
+
+function toggleScoreContainer() {
+    if (scoreContainer.style.display === 'flex') {
+        scoreContainer.style.display = 'none';
+        wrapper.style.display = 'grid';
+        scoresheetButton.innerHTML = `
+        <span class="material-symbols-rounded">
+          leaderboard
+        </span>
+        <h2 class="m-text-4">Scores</h2>
+        `;
+    } else {
+        scoreContainer.style.display = 'flex';
+        wrapper.style.display = 'none';
+        scoresheetButton.innerHTML = `
+        <span class="material-symbols-rounded">
+          Home
+        </span>
+        <h2 class="m-text-4">Home</h2>
+        `;
+    }
+}

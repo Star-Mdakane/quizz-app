@@ -49,7 +49,7 @@ if (darkmode === "active") enableDarkmode();
 
 const changeTheme = () => {
     // darkmode = localStorage.getItem("darkmode");
-    // darkmode !== "active" ? enableDarkmode() : disableDarkmode();
+    // darkmode !== "active" ? enableDarkmode() : disableDarkmode(); somehow works but the logic is off
 
     main.classList.toggle("darkmode");
     main.classList.contains("darkmode") ? disableDarkmode() : enableDarkmode();

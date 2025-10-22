@@ -48,8 +48,10 @@ const disableDarkmode = () => {
 if (darkmode === "active") enableDarkmode();
 
 const changeTheme = () => {
-    darkmode = localStorage.getItem("darkmode");
+    // darkmode = localStorage.getItem("darkmode");
     // darkmode !== "active" ? enableDarkmode() : disableDarkmode();
+
+    main.classList.toggle("darkmode");
     main.classList.contains("darkmode") ? disableDarkmode() : enableDarkmode();
 }
 
